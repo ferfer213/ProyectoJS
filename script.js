@@ -1,243 +1,193 @@
 //Productos del kiosco online
 
 class Producto {
-    constructor(id,nombre, precio,desc,imagen) {
+    constructor(id,nombre, precio,desc,cantidad,imagen,categoria) {
         this.id      = parseFloat(id)
         this.nombre  = nombre.toUpperCase();
         this.precio  = parseFloat(precio);
+        this.cantidad= parseFloat(cantidad)
         this.desc    = desc
         this.img     = imagen
+        this.categoria = categoria.toUpperCase();
     }
-mostrarDatos(){
-        console.log(`${this.id} - El producto es ${this.nombre} y vale $${this.precio}. `)
-    }
+
 }
-const carrito =[];
 
 const stockProductos = [];
 
-let producto1 = (new Producto(1,"arroz", 100,"descripcion del producto","img/producto2.jpg"));
+
+
+let producto1 = (new Producto(1,"arroz", 60000,"descripcion del producto",1,"img/producto2.jpg","alimento"));
 stockProductos.push(producto1)
-let producto2 = (new Producto(2,"fideo", 200,"descripcion del producto","img/producto2.jpg"));
+let producto2 = (new Producto(2,"fideo", 200,"descripcion del producto",1,"img/producto2.jpg","alimento"));
 stockProductos.push(producto2)
-let producto3 = (new Producto(3,"pan", 300,"descripcion del producto","img/producto2.jpg"));
+let producto3 = (new Producto(3,"pan", 300,"descripcion del producto",1,"img/producto2.jpg","alimento"));
 stockProductos.push(producto3)
-let producto4 = (new Producto(4,"alfajor", 400,"descripcion del producto","img/producto2.jpg"));
+let producto4 = (new Producto(4,"alfajor", 100,"descripcion del producto",1,"img/producto2.jpg","golosina"));
 stockProductos.push(producto4)
-let producto5 = (new Producto(5,"gaseosa", 500,"descripcion del producto","img/producto2.jpg"));
+let producto5 = (new Producto(5,"gaseosa", 500,"descripcion del producto",1,"img/producto2.jpg","bebida"));
 stockProductos.push(producto5)
 
-// //variables de las compras
-//  let envio = 200
-//  let nuevoPrecio = 0
-//  let nuevoPrecioEnvio = 0
-
-//  //FUNCIONES
-
-
-
-//  //Funciones de compra
-// function suma(a,b){
-//     let precioMasIva = a + b
-//     return precioMasIva 
-// }
-// function iva (x){
-//    let precioIva = x * 0.21
-//    return  precioIva
-// }
-
-// //switch de compra
-// function empezarCompra(){
-//     let bandera = parseInt(prompt(`Ingrese el número de la opción que desea comprar:`))
-//     let envio1 = prompt("Desea que le enviemos el producto? Si/No")
-    
-//     switch (bandera){
-//         case 1:
-//             nuevoPrecio = suma(producto1.precio,iva(producto1.precio));
-//             if(envio1 === "Si"){ 
-//                 nuevoPrecioEnvio = suma(nuevoPrecio,envio)
-//                 mostrar(nuevoPrecioEnvio)
-//             }
-//             if(envio1 === "No"){
-//                 mostrar(nuevoPrecio)
-//             }
-//             break;
-//         case 2:
-//             nuevoPrecio = suma(producto2.precio,iva(producto2.precio))
-//         if(envio1 === "Si"){ 
-//             nuevoPrecioEnvio = suma(nuevoPrecio,envio)
-//             mostrar(nuevoPrecioEnvio)
-//         }
-//         if(envio1 === "No"){
-//             mostrar(nuevoPrecio)
-//             break;
-//         }
-//         break;
-//         case 3:
-//             nuevoPrecio = suma(producto3.precio,iva(producto3.precio))
-//         if(envio1 === "Si"){ 
-//             nuevoPrecioEnvio = suma(nuevoPrecio,envio)
-//             mostrar(nuevoPrecioEnvio)
-//         }
-//         if(envio1 === "No"){
-//             mostrar(nuevoPrecio)
-//             break;
-//         }
-//         case 4:
-//             nuevoPrecio = suma(producto4.precio,iva(producto4.precio))
-//             if(envio1 === "Si"){ 
-//                 nuevoPrecioEnvio = suma(nuevoPrecio,envio)
-//                 mostrar(nuevoPrecioEnvio)
-//             }
-//             if(envio1 === "No"){
-//                 mostrar(nuevoPrecio)
-//             }
-//             break;
-           
-//         case 5:
-//             nuevoPrecio = suma(producto5.precio,iva(producto5.precio))
-//         if(envio1 === "Si"){ 
-//             nuevoPrecioEnvio = suma(nuevoPrecio,envio)
-//             mostrar(nuevoPrecioEnvio)
-//         }
-//         if(envio1 === "No"){
-//             mostrar(nuevoPrecio)
-//         }
-//         break;
-//           }
-//     }
-// //FUNCIONES DE LISTA DE OPCIONES
-// function mostrar (mensaje){
-//    alert("Su precio es " + mensaje)
-// }
-
-
-// function mostrarCatalogo(){
-//     alert(`Podrá ver nuestro catálogo en la consola:`)
-//     for(const producto of productos){
-//         producto.mostrarDatos()
-// }
-// }
-// function filtrador(){ 
-//     let a = parseInt(prompt("Ingrese valor maximo para filtrar"))
-//     const baratos = productos.filter(producto => producto.precio < a)
-//         console.log(baratos)
-//     const caros = productos.filter(producto => producto.precio > a)
-//         console.log(caros)
-// }
-// //function que permita al vendedor agregar un producto nuevo al catalogo
-// function nuevoProducto(){
-//     let productoIngresado = prompt("Ingrese el producto")
-//     let precioIngresado = parseInt(prompt("Ingrese el precio"))
-//     let productoCreado = new Producto(productos.length+1,productoIngresado, precioIngresado)
-//     console.log(productoCreado)
-//     productos.push(productoCreado)
-// }
-
-// //FUNCION LISTA DE OPCIONES
-// function preguntarOpcion(){
-//     let opcion = parseInt(prompt(`Ingrese el número de la opción que desea realizar:
-//                         1 - Ver catálogo de productos
-//                         2 - Agregar un producto a nuestro catálogo 
-//                         3 - Eliminar un producto de nuestro catálogo 
-//                         4 - Inciar compra:
-//                         5 - Filtrar por precio:
-//                         0 - Para salir
-//                         `))
-//                         menu(opcion)
-//                     }
-
-//  let salir
-// while(salir != true){
-//                preguntarOpcion()   
-//                }
-
-// //switch de opciones
-// function menu(opcionSeleccionada){
-//     switch(opcionSeleccionada){
-//     case 0:
-//         salir = true
-//         alert(`Gracias por visitarnos, vuelva pronto :D`)
-//         break;
-//     case 1:
-//        mostrarCatalogo() 
-//        break;
-//     case 2:
-//         nuevoProducto()
-//     break;
-//     case 3:
-//         break;
-//     case 4:
-//     empezarCompra()
-//             break;
-//     case 5:
-
-//         filtrador()
-        
-//         break;
-// }
-// }
-
-
-// let divProductos = document.getElementById("productos")
-// divProductos.setAttribute("class", "productosEstilos")
-// function mostrarCatalogo(){
-// productos.forEach((producto)=>{
-//     let nuevoProducto = document.createElement("div")
-//     nuevoProducto.innerHTML = `<article id="${producto.id}" class="card">
-//                                     <h3 class="tituloCard">${producto.nombre}</h3>
-//                                     <img src="${producto.imagen}" >
-//                                     <div class="content">
-//                                         <p class="precioCard">Precio: ${producto.precio}</p>
-//                                         <a href="" target="blank">Agregar al carrito</a>
-//                                     </div>
-//                                 </article>`
-//     divProductos.appendChild(nuevoProducto)
-// })}
-// function ocultarCatalogo(){
-//     divProductos.innerHTML =""
-// }
-
-
-    
-//Trabajo para el carrito
-
+//PRODUCTOS
 
 const contenedorProductos = document.getElementById(`contenedorProductos`)
 contenedorProductos.setAttribute("class", "productosEstilos")
-function mostrarCatalogo(){
-stockProductos.forEach((producto) => {
-    const div = document.createElement(`div`)
-    div.classList.add(`producto`)
-    div.innerHTML = `
-    <article class="card">
-    <img src=${producto.img} alt="">
-    <h3>${producto.nombre}</h3>
-    <p>${producto.desc}</p>
-    <p class="precioProducto">Precio:$ ${producto.precio}</p> 
-    <button id="agregar${producto.id}" class="buttonAgregar">Agregar <i class="<i class="bi bi-cart-fill"></i></button>
-    </article>
-     `
-     contenedorProductos.appendChild(div)
 
-     const boton = document.getElementById(`agregar${producto.id}`)
-     boton.addEventListener(`click`, () => agregarAlCarrito(producto.id) )
+function mostrarCatalogo(){
+    stockProductos.forEach((producto) => {
+        const div = document.createElement(`div`)
+        div.classList.add(`producto`)
+        div.innerHTML = `
+        <article class="card">
+        <img src=${producto.img} alt="">
+        <h3>${producto.nombre}</h3>
+        <p>${producto.desc}</p>
+        <p class="precioProducto">Precio:$ ${producto.precio}</p> 
+        <button id="agregar${producto.id}" class="buttonAgregar">Agregar <i class="<i class="bi bi-cart-fill"></i></button>
+        </article>
+         `
+         contenedorProductos.appendChild(div)
+    
+         const boton = document.getElementById(`agregar${producto.id}`)
+         boton.addEventListener(`click`, () => agregarAlCarrito(producto.id) )
+    })}
+    
+    function ocultarCatalogo(){
+       
+        contenedorProductos.innerHTML = ""
+       
+    }
+
+
+    mostrarCatalogo()
+
+
+
+
+
+    
+//const del CARRITO 
+
+let carrito =[];
+
+
+const vaciarCarrito = document.getElementById(`vaciarCarrito`)
+
+const contenedorCarrito = document.getElementById(`modal-body`)
+
+const precioTotal = document.getElementById (`precioTotal`)
+
+const contadorCarrito = document.getElementById(`contadorCarrito`)
+
+document.addEventListener(`DOMContentLoaded`,()=>{
+    if(localStorage.getItem(`carrito`)){
+        carrito = JSON.parse(localStorage.getItem(`carrito`))
+        actualizarCarrito()
+    }
+    else()=>{
+        localStorage.removeItem(`carrito`)
+        actualizarCarrito
+    }
 })
 
 
 
+
+ //CARRITO   
+
   const agregarAlCarrito = (prodId) => {
+    const existe = carrito.some (prod => prod.id === prodId)
+
+    if (existe){
+        const prod = carrito.map(prod => {
+            if (prod.id === prodId){
+                prod.cantidad++
+            }
+        })
+    }
+
+    else{
     const item = stockProductos.find ((prod) => prod.id === prodId)
     carrito.push(item)
-    console.log(carrito)
-  }} 
+    }
+    actualizarCarrito()
+    
+  }
 
-  function ocultarCatalogo(){
-    contenedorProductos.innerHTML =""
-}
 
-  let mostrarCatalogoBtn = document.getElementById("verCatalogo")
-  mostrarCatalogoBtn.addEventListener(`click`, mostrarCatalogo)
- 
-  let ocultarCatalogoBtn = document.getElementById("ocultarCatalogo")
-  ocultarCatalogoBtn.addEventListener(`click`, ocultarCatalogo)
+
+
+
+
+  const actualizarCarrito = ()=>{
+
+    contenedorCarrito.innerHTML = ""
+
+    carrito.forEach((productoCarrito) =>{
+        const div = document.createElement(`div`)
+        div.className = (`modal-body`)
+        div.innerHTML = `
+        <div class="card border-primary mb-3" id ="productoCarrito${productoCarrito.id}" style="max-width: 540px;">
+                <img class="card-img-top" src="${productoCarrito.img}" alt="${productoCarrito.nombre}">
+                <div class="card-body">
+                        <h4 class="card-title">${productoCarrito.nombre}</h4>
+                    
+                        <p class="card-text">$${productoCarrito.precio*productoCarrito.cantidad}</p>
+                        <p>Cantidad:${productoCarrito.cantidad}</p>
+                        <button onclick="sumarAlCarrito(${productoCarrito.cantidad})" class= "btn btn-success" id="botonAgregar"><i class="fas fa-plus"></i></button><button onclick="eliminarDelCarrito(${productoCarrito.id})" class= "btn btn-danger" id="botonRestar"><i class="fas fa-minus"></i></i></button>
+                        <button onclick="eliminarDelCarrito(${productoCarrito.id})" class= "btn btn-dark" id="botonEliminar"><i class="fas fa-trash-alt"></i></button>
+                </div>    
+            
+            
+            </div>`
+        
+        contenedorCarrito.appendChild(div)
+
+        localStorage.setItem(`carrito`, JSON.stringify(carrito))
+    })
+    contadorCarrito.innerText = carrito.length
+    precioTotal.innerText = carrito.reduce((acum,productoCarrito)=> acum + productoCarrito.precio*productoCarrito.cantidad, 0)
+  }
+  
+
+
+//FILTROS AUN EN ESTADO DE PRUEBA
+const mayorA = document.getElementById(`mayorA`)
+const menorA = document.getElementById(`menorA`)
+
+mayorA.addEventListener(`click`,()=>{
+    stockProductos.sort((a, b)=>{return a.precio - b.precio});
+    ocultarCatalogo()
+    mostrarCatalogo()
+       
+    })
+
+menorA.addEventListener(`click`,()=>{
+    stockProductos.sort((a, b)=>{return b.precio - a.precio});
+    ocultarCatalogo()
+    mostrarCatalogo()
+       
+    })
+   
+//Botones Carrito (el sumar y restar aun no encuentro la forma de hacerlo)
+    const sumarAlCarrito = (prodId) => {
+        const item = carrito.find((prod) => prod.id===prodId)
+        carrito.indexOf(item)
+        prodId.cantidad++
+       actualizarCarrito()
+    }
+    
+    
+     const eliminarDelCarrito = (prodId) => {
+        const item = carrito.find((prod) => prod.id === prodId)
+        const indice = carrito.indexOf(item)
+        carrito.splice(indice,1)
+        actualizarCarrito()
+     }
+    
+     vaciarCarrito.addEventListener(`click`, () => {
+        carrito.length = 0
+        localStorage.removeItem(`carrito`)
+        actualizarCarrito()
+    })
+    

@@ -70,6 +70,7 @@ function mostrarCatalogo(){
 
 let carrito =[];
 
+const fcompra = document.getElementById(`botonFinalizarCompra`)
 
 const vaciarCarrito = document.getElementById(`vaciarCarrito`)
 
@@ -81,7 +82,7 @@ const contadorCarrito = document.getElementById(`contadorCarrito`)
 
 document.addEventListener(`DOMContentLoaded`,()=>{
     if(localStorage.getItem(`carrito`)){
-        carrito = JSON.parse(localStorage.getItem(`carrito`))
+        carrito = JSON.parse(localStorage.getItem(`carrito`)) 
         actualizarCarrito()
     }
     else()=>{
@@ -90,6 +91,10 @@ document.addEventListener(`DOMContentLoaded`,()=>{
     }
 })
 
+// document.addEventListener(`DOMContentLoaded`,()=>{
+//     localStorage.getItem(`carrito`) ?  carrito = JSON.parse(localStorage.getItem(`carrito`)) && actualizarCarrito() : localStorage.removeItem(`carrito`) && actualizarCarrito()
+    
+// }) ESTA FUNCION ES LA QUE APARECE ARRIBA PERO CUANDO LA COLOCO ME APARECE ERROR EN LA LINEA 103, CON EL SOME
 
 
 
@@ -100,10 +105,10 @@ document.addEventListener(`DOMContentLoaded`,()=>{
 
     if (existe){
         const prod = carrito.map(prod => {
-            if (prod.id === prodId){
+            prod.id === prodId &&
                 prod.cantidad++
             }
-        })
+        )
     }
 
     else{
@@ -147,6 +152,12 @@ document.addEventListener(`DOMContentLoaded`,()=>{
     })
     contadorCarrito.innerText = carrito.length
     precioTotal.innerText = carrito.reduce((acum,productoCarrito)=> acum + productoCarrito.precio*productoCarrito.cantidad, 0)
+
+    fcompra.addEventListener(`click`,()=>{
+        carrito.length <= 0 ? true : false
+        carrito.length ? alert("Gracias por su compra") && actualizarCarrito()  : alert("Su carrito esta vacio") && actualizarCarrito()
+    
+    })
   }
   
 
@@ -170,6 +181,8 @@ menorA.addEventListener(`click`,()=>{
     })
    
 //Botones Carrito (el sumar y restar aun no encuentro la forma de hacerlo)
+
+
     const sumarAlCarrito = (prodId) => {
         const item = carrito.find((prod) => prod.id===prodId)
         carrito.indexOf(item)
@@ -187,7 +200,8 @@ menorA.addEventListener(`click`,()=>{
     
      vaciarCarrito.addEventListener(`click`, () => {
         carrito.length = 0
-        localStorage.removeItem(`carrito`)
+        localStorage.setItem(`carrito`,JSON.stringify(carrito))
         actualizarCarrito()
     })
     
+   

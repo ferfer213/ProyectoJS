@@ -1,4 +1,5 @@
 //Productos del kiosco online
+swal("Bienvenido al Kiosco Diegote");
 
 class Producto {
     constructor(id,nombre, precio,desc,cantidad,imagen,categoria) {
@@ -155,7 +156,19 @@ document.addEventListener(`DOMContentLoaded`,()=>{
 
     fcompra.addEventListener(`click`,()=>{
         carrito.length <= 0 ? true : false
-        carrito.length ? alert("Gracias por su compra") && actualizarCarrito()  : alert("Su carrito esta vacio") && actualizarCarrito()
+        carrito.length ? swal({
+            title: 'Compra realizada',
+            icon: 'success',
+            confirmButtonColor: 'green',
+            text: `Muchas gracias por su compra ha adquirido nuestros productos. `,
+            footer: `<p> nos comprometemos que en el plazo de 48hs nos comunicaremos con usted</p>`
+        })  : swal({
+            title: 'Compra no realizada',
+            icon: 'info',
+            text: `La compra no ha sido realizada! Atención no posee productos en el carrito`,
+            confirmButtonColor: 'green',
+            timer:4500
+        }) 
     
     })
   }

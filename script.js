@@ -31,16 +31,37 @@ class Producto {
 
 let stockProductos = [];
 
-    fetch("productos.json",{headers: {
-        'Access-Control-Allow-Origin': '*'
-      }})
-    .then(resp => resp.json())
-    .then((data) => {
-        console.log(data)
-        for(let producto of data){
-            let productoNuevo = (producto.id, producto.nombre, producto.precio, producto.cantidad, producto.desc, producto.imagen, producto.categoria)
+const mostrarCatalogo = async () =>{
+    const response = await fetch("productos.json")
+    const data = await response.json()
+    for(let producto of data){
+            let productoNuevo = new Producto(producto.id, producto.nombre, producto.precio, producto.cantidad, producto.desc, producto.img, producto.categoria)
             stockProductos.push(productoNuevo)
-        }})
+            const div = document.createElement(`div`)
+        div.classList.add(`producto`)
+        div.innerHTML = `
+        <article class="card">
+        <img src=${producto.img} alt="">
+        <h3>${producto.nombre}</h3>
+        <p>${producto.desc}</p>
+        <p class="precioProducto">Precio:$ ${producto.precio}</p> 
+        <button id="agregar${producto.id}" class="buttonAgregar">Agregar <i class="<i class="bi bi-cart-fill"></i></button>
+        </article>
+         `
+         contenedorProductos.appendChild(div)
+    
+         const boton = document.getElementById(`agregar${producto.id}`)
+         boton.addEventListener(`click`, () => agregarAlCarrito(producto.id) )
+         
+    }}
+    
+    function ocultarCatalogo(){
+       
+        contenedorProductos.innerHTML = ""
+            
+        }
+
+       
         
 
            
@@ -59,34 +80,35 @@ let stockProductos = [];
 const contenedorProductos = document.getElementById(`contenedorProductos`)
 contenedorProductos.setAttribute("class", "productosEstilos")
 
-function mostrarCatalogo(){
-    stockProductos.forEach((producto) => {
-        const div = document.createElement(`div`)
-        div.classList.add(`producto`)
-        div.innerHTML = `
-        <article class="card">
-        <img src=${producto.img} alt="">
-        <h3>${producto.nombre}</h3>
-        <p>${producto.desc}</p>
-        <p class="precioProducto">Precio:$ ${producto.precio}</p> 
-        <button id="agregar${producto.id}" class="buttonAgregar">Agregar <i class="<i class="bi bi-cart-fill"></i></button>
-        </article>
-         `
-         contenedorProductos.appendChild(div)
+// function mostrarCatalogo(){
+//     cargarStock()
+//     stockProductos.forEach((producto) => {
+//         const div = document.createElement(`div`)
+//         div.classList.add(`producto`)
+//         div.innerHTML = `
+//         <article class="card">
+//         <img src=${producto.img} alt="">
+//         <h3>${producto.nombre}</h3>
+//         <p>${producto.desc}</p>
+//         <p class="precioProducto">Precio:$ ${producto.precio}</p> 
+//         <button id="agregar${producto.id}" class="buttonAgregar">Agregar <i class="<i class="bi bi-cart-fill"></i></button>
+//         </article>
+//          `
+//          contenedorProductos.appendChild(div)
     
-         const boton = document.getElementById(`agregar${producto.id}`)
-         boton.addEventListener(`click`, () => agregarAlCarrito(producto.id) )
-    })}
+//          const boton = document.getElementById(`agregar${producto.id}`)
+//          boton.addEventListener(`click`, () => agregarAlCarrito(producto.id) )
+//     })}
     
-    function ocultarCatalogo(){
+//     function ocultarCatalogo(){
        
-        contenedorProductos.innerHTML = ""
+//         contenedorProductos.innerHTML = ""
        
-    }
+//     }
 
-
+    
     mostrarCatalogo()
-
+// console.log(stockProductos)
 
 
 
@@ -151,7 +173,7 @@ document.addEventListener(`DOMContentLoaded`,()=>{
 
 
   const actualizarCarrito = ()=>{
-
+    
     contenedorCarrito.innerHTML = ""
 
     carrito.forEach((productoCarrito) =>{
@@ -163,7 +185,7 @@ document.addEventListener(`DOMContentLoaded`,()=>{
                 <div class="card-body">
                         <h4 class="card-title">${productoCarrito.nombre}</h4>
                     
-                        <p class="card-text">$${productoCarrito.precio*productoCarrito.cantidad}</p>
+                        <p class="card-text">$${productoCarrito.precio}</p>
                         <p>Cantidad:${productoCarrito.cantidad}</p>
                         <button onclick="sumarAlCarrito(${productoCarrito.cantidad})" class= "btn btn-success" id="botonAgregar"><i class="fas fa-plus"></i></button><button onclick="eliminarDelCarrito(${productoCarrito.id})" class= "btn btn-danger" id="botonRestar"><i class="fas fa-minus"></i></i></button>
                         <button onclick="eliminarDelCarrito(${productoCarrito.id})" class= "btn btn-dark" id="botonEliminar"><i class="fas fa-trash-alt"></i></button>

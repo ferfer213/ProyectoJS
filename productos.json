@@ -1,0 +1,73 @@
+
+
+[
+    {
+        "id"       : 1 ,
+        "nombre"    : "arroz" ,
+        "precio"    : 300 ,
+        "cantidad"  : 1,
+        "desc"      : "descripcion del producto",
+        "img"       : "img/alimentos.jpg",
+        "categoria" : "alimento"
+    },{
+        "id"       : 2 ,
+        "nombre"    : "fideo" ,
+        "precio"    : 350 ,
+        "cantidad"  : 1,
+        "desc"      : "descripcion del producto",
+        "img"       : "img/alimentos.jpg",
+        "categoria" : "bebida"
+    },{
+        "id"       : 3 ,
+        "nombre"    : "pan" ,
+        "precio"    : 450 ,
+        "cantidad"  : 1,
+        "desc"      : "descripcion del producto",
+        "img"       : "img/alimentos.jpg",
+        "categoria" : "bebida"
+    },{
+        "id"       : 4 ,
+        "nombre"    : "guaymallen" ,
+        "precio"    : 50 ,
+        "cantidad"  : 1,
+        "desc"      : "descripcion del producto",
+        "img"       : "img/golosinas.jpg",
+        "categoria" : "bebida"
+    },{
+        "id"       : 5 ,
+        "nombre"    : "coca-cola" ,
+        "precio"    : 170 ,
+        "cantidad"  : 1,
+        "desc"      : "descripcion del producto",
+        "img"       : "img/bebidas.jpg",
+        "categoria" : "bebida"
+    },
+    {
+        "id"       : 6 ,
+        "nombre"    : "pepsi" ,
+        "precio"    : 180 ,
+        "cantidad"  : 1,
+        "desc"      : "descripcion del producto",
+        "img"       : "img/bebidas.jpg",
+        "categoria" : "bebida"
+    },
+    {
+        "id"       : 7,
+        "nombre"    : "gomitas mogul" ,
+        "precio"    : 120 ,
+        "cantidad"  : 1,
+        "desc"      : "descripcion del producto",
+        "img"       : "img/golosinas.jpg",
+        "categoria" : "golosina"
+    },
+    {
+        "id"       : 8,
+        "nombre"    : "oblea bon o bon" ,
+        "precio"    : 140 ,
+        "cantidad"  : 1,
+        "desc"      : "descripcion del producto",
+        "img"       : "img/golosinas.jpg",
+        "categoria" : "golosina"
+    }
+]
+

@@ -14,20 +14,60 @@ class Producto {
 
 }
 
+
+
+
+
+// let producto1 = (new Producto(1,"arroz", 300,"descripcion del producto",1,"img/alimentos.jpg","alimento"));
+// stockProductos.push(producto1)
+// let producto2 = (new Producto(2,"fideo", 350,"descripcion del producto",1,"img/alimentos.jpg","alimento"));
+// stockProductos.push(producto2)
+// let producto3 = (new Producto(3,"pan", 450,"descripcion del producto",1,"img/alimentos.jpg","alimento"));
+// stockProductos.push(producto3)
+// let producto4 = (new Producto(4,"guaymallen", 50,"descripcion del producto",1,"img/golosinas.jpg","golosina"));
+// stockProductos.push(producto4)
+// let producto5 = (new Producto(5,"coca cola", 170,"descripcion del producto",1,"img/bebidas.jpg","bebida"));
+// stockProductos.push(producto5)
+
 const stockProductos = [];
 
+    fetch("productos.json",{headers: {
+        'Access-Control-Allow-Origin': '*'
+      }})
+    .then(resp => resp.json())
+    .then((data) => {
+        console.log(data)
+        for(let producto of data.results){
+            let productoNuevo = (producto.id, producto.nombre, prodcuto.precio, producto.cantidad, producto.desc, producto.imagen, producto.categoria)
+            stockProductos.push(productoNuevo)
+        }
+            stockProductos.forEach((producto) => {
+                const div = document.createElement(`div`)
+                div.classList.add(`producto`)
+                div.innerHTML = `
+                <article class="card">
+                <img src=${producto.img} alt="">
+                <h3>${producto.nombre}</h3>
+                <p>${producto.desc}</p>
+                <p class="precioProducto">Precio:$ ${producto.precio}</p> 
+                <button id="agregar${producto.id}" class="buttonAgregar">Agregar <i class="<i class="bi bi-cart-fill"></i></button>
+                </article>
+                 `
+            })
+   
+
+           
 
 
-let producto1 = (new Producto(1,"arroz", 60000,"descripcion del producto",1,"img/producto2.jpg","alimento"));
-stockProductos.push(producto1)
-let producto2 = (new Producto(2,"fideo", 200,"descripcion del producto",1,"img/producto2.jpg","alimento"));
-stockProductos.push(producto2)
-let producto3 = (new Producto(3,"pan", 300,"descripcion del producto",1,"img/producto2.jpg","alimento"));
-stockProductos.push(producto3)
-let producto4 = (new Producto(4,"alfajor", 100,"descripcion del producto",1,"img/producto2.jpg","golosina"));
-stockProductos.push(producto4)
-let producto5 = (new Producto(5,"gaseosa", 500,"descripcion del producto",1,"img/producto2.jpg","bebida"));
-stockProductos.push(producto5)
+
+
+
+cargarStock()
+
+
+
+
+
 
 //PRODUCTOS
 
@@ -215,6 +255,4 @@ menorA.addEventListener(`click`,()=>{
         carrito.length = 0
         localStorage.setItem(`carrito`,JSON.stringify(carrito))
         actualizarCarrito()
-    })
-    
-   
+    })})

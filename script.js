@@ -37,24 +37,11 @@ const stockProductos = [];
     .then(resp => resp.json())
     .then((data) => {
         console.log(data)
-        for(let producto of data.results){
+        for(let producto of data){
             let productoNuevo = (producto.id, producto.nombre, prodcuto.precio, producto.cantidad, producto.desc, producto.imagen, producto.categoria)
             stockProductos.push(productoNuevo)
-        }
-            stockProductos.forEach((producto) => {
-                const div = document.createElement(`div`)
-                div.classList.add(`producto`)
-                div.innerHTML = `
-                <article class="card">
-                <img src=${producto.img} alt="">
-                <h3>${producto.nombre}</h3>
-                <p>${producto.desc}</p>
-                <p class="precioProducto">Precio:$ ${producto.precio}</p> 
-                <button id="agregar${producto.id}" class="buttonAgregar">Agregar <i class="<i class="bi bi-cart-fill"></i></button>
-                </article>
-                 `
-            })
-   
+        }})
+        
 
            
 
@@ -255,4 +242,4 @@ menorA.addEventListener(`click`,()=>{
         carrito.length = 0
         localStorage.setItem(`carrito`,JSON.stringify(carrito))
         actualizarCarrito()
-    })})
+    })

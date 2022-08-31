@@ -29,7 +29,7 @@ class Producto {
 // let producto5 = (new Producto(5,"coca cola", 170,"descripcion del producto",1,"img/bebidas.jpg","bebida"));
 // stockProductos.push(producto5)
 
-const stockProductos = [];
+let stockProductos = [];
 
     fetch("productos.json",{headers: {
         'Access-Control-Allow-Origin': '*'
@@ -38,7 +38,7 @@ const stockProductos = [];
     .then((data) => {
         console.log(data)
         for(let producto of data){
-            let productoNuevo = (producto.id, producto.nombre, prodcuto.precio, producto.cantidad, producto.desc, producto.imagen, producto.categoria)
+            let productoNuevo = (producto.id, producto.nombre, producto.precio, producto.cantidad, producto.desc, producto.imagen, producto.categoria)
             stockProductos.push(productoNuevo)
         }})
         
@@ -48,8 +48,6 @@ const stockProductos = [];
 
 
 
-
-cargarStock()
 
 
 

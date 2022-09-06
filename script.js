@@ -2,13 +2,13 @@
 swal("Bienvenido al Kiosco Diegote");
 
 class Producto {
-    constructor(id,nombre, precio,desc,cantidad,imagen,categoria) {
-        this.id      = parseFloat(id)
-        this.nombre  = nombre.toUpperCase();
-        this.precio  = parseFloat(precio);
-        this.cantidad= parseFloat(cantidad)
-        this.desc    = desc
-        this.img     = imagen
+    constructor(id,nombre, precio,cantidad,desc,imagen,categoria) {
+        this.id      = id,
+        this.nombre  = nombre.toUpperCase(),
+        this.precio  = precio,
+        this.cantidad= cantidad,
+        this.desc    = desc,
+        this.img     = imagen,
         this.categoria = categoria.toUpperCase();
     }
 
@@ -31,27 +31,28 @@ class Producto {
 
 let stockProductos = [];
 
-const mostrarCatalogo = async () =>{
+const cargarStock = async () =>{
     const response = await fetch("productos.json")
     const data = await response.json()
+    console.log(data)
     for(let producto of data){
             let productoNuevo = new Producto(producto.id, producto.nombre, producto.precio, producto.cantidad, producto.desc, producto.img, producto.categoria)
             stockProductos.push(productoNuevo)
-            const div = document.createElement(`div`)
-        div.classList.add(`producto`)
-        div.innerHTML = `
-        <article class="card">
-        <img src=${producto.img} alt="">
-        <h3>${producto.nombre}</h3>
-        <p>${producto.desc}</p>
-        <p class="precioProducto">Precio:$ ${producto.precio}</p> 
-        <button id="agregar${producto.id}" class="buttonAgregar">Agregar <i class="<i class="bi bi-cart-fill"></i></button>
-        </article>
-         `
-         contenedorProductos.appendChild(div)
+        //     const div = document.createElement(`div`)
+        // div.classList.add(`producto`)
+        // div.innerHTML = `
+        // <article class="card">
+        // <img src=${producto.img} alt="">
+        // <h3>${producto.nombre}</h3>
+        // <p>${producto.desc}</p>
+        // <p class="precioProducto">Precio:$ ${producto.precio}</p> 
+        // <button id="agregar${producto.id}" class="buttonAgregar">Agregar <i class="<i class="bi bi-cart-fill"></i></button>
+        // </article>
+        //  `
+        //  contenedorProductos.appendChild(div)
     
-         const boton = document.getElementById(`agregar${producto.id}`)
-         boton.addEventListener(`click`, () => agregarAlCarrito(producto.id) )
+        //  const boton = document.getElementById(`agregar${producto.id}`)
+        //  boton.addEventListener(`click`, () => agregarAlCarrito(producto.id) )
          
     }}
     
@@ -61,6 +62,7 @@ const mostrarCatalogo = async () =>{
             
         }
 
+        cargarStock()
        
         
 
@@ -80,36 +82,41 @@ const mostrarCatalogo = async () =>{
 const contenedorProductos = document.getElementById(`contenedorProductos`)
 contenedorProductos.setAttribute("class", "productosEstilos")
 
-// function mostrarCatalogo(){
-//     cargarStock()
-//     stockProductos.forEach((producto) => {
-//         const div = document.createElement(`div`)
-//         div.classList.add(`producto`)
-//         div.innerHTML = `
-//         <article class="card">
-//         <img src=${producto.img} alt="">
-//         <h3>${producto.nombre}</h3>
-//         <p>${producto.desc}</p>
-//         <p class="precioProducto">Precio:$ ${producto.precio}</p> 
-//         <button id="agregar${producto.id}" class="buttonAgregar">Agregar <i class="<i class="bi bi-cart-fill"></i></button>
-//         </article>
-//          `
-//          contenedorProductos.appendChild(div)
+function mostrarCatalogo(){
     
-//          const boton = document.getElementById(`agregar${producto.id}`)
-//          boton.addEventListener(`click`, () => agregarAlCarrito(producto.id) )
-//     })}
+    stockProductos.forEach((producto) => {
+        const div = document.createElement(`div`)
+        div.classList.add(`producto`)
+        div.innerHTML = `
+        <article class="card">
+        <img src=${producto.img} alt="">
+        <h3>${producto.nombre}</h3>
+        <p>${producto.desc}</p>
+        <p class="precioProducto">Precio:$ ${producto.precio}</p> 
+        <button id="agregar${producto.id}" class="buttonAgregar">Agregar <i class="<i class="bi bi-cart-fill"></i></button>
+        </article>
+         `
+         contenedorProductos.appendChild(div)
+    
+         const boton = document.getElementById(`agregar${producto.id}`)
+         boton.addEventListener(`click`, () => agregarAlCarrito(producto.id) )
+    })}
     
 //     function ocultarCatalogo(){
        
 //         contenedorProductos.innerHTML = ""
        
-//     }
+//     
 
     
-    mostrarCatalogo()
+    
 // console.log(stockProductos)
 
+    const mCatalogo = document.getElementById(`mostrarCatalogo`)
+    
+    mCatalogo.addEventListener(`click`,()=>{ 
+        ocultarCatalogo()
+    mostrarCatalogo()})
 
 
 
@@ -197,6 +204,8 @@ document.addEventListener(`DOMContentLoaded`,()=>{
         contenedorCarrito.appendChild(div)
 
         localStorage.setItem(`carrito`, JSON.stringify(carrito))
+
+        console.log(productoCarrito.cantidad)
     })
     contadorCarrito.innerText = carrito.length
     precioTotal.innerText = carrito.reduce((acum,productoCarrito)=> acum + productoCarrito.precio*productoCarrito.cantidad, 0)
@@ -216,9 +225,13 @@ document.addEventListener(`DOMContentLoaded`,()=>{
             confirmButtonColor: 'green',
             timer:4500
         }) 
-    
+    if(fcompra = true){
+    carrito.length = 0
+    localStorage.setItem(`carrito`,JSON.stringify(carrito))
+    actualizarCarrito()
+    }
     })
-  }
+}
   
 
 
@@ -239,9 +252,14 @@ menorA.addEventListener(`click`,()=>{
     mostrarCatalogo()
        
     })
+
+
+
+
+    
    
 //Botones Carrito (el sumar y restar aun no encuentro la forma de hacerlo)
-
+    const agregarUno = document.getElementById(`botonAgregar`)
 
     const sumarAlCarrito = (prodId) => {
         const item = carrito.find((prod) => prod.id===prodId)
@@ -255,6 +273,7 @@ menorA.addEventListener(`click`,()=>{
         const item = carrito.find((prod) => prod.id === prodId)
         const indice = carrito.indexOf(item)
         carrito.splice(indice,1)
+        localStorage.setItem(`carrito`,JSON.stringify(carrito))
         actualizarCarrito()
      }
     
@@ -262,4 +281,8 @@ menorA.addEventListener(`click`,()=>{
         carrito.length = 0
         localStorage.setItem(`carrito`,JSON.stringify(carrito))
         actualizarCarrito()
+    })
+
+    agregarUno.addEventListener (`click`, ()=>{
+        sumarAlCarrito()
     })

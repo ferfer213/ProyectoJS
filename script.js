@@ -9,7 +9,7 @@ class Producto {
         this.cantidad= cantidad,
         this.desc    = desc,
         this.img     = imagen,
-        this.categoria = categoria.toUpperCase();
+        this.categoria = categoria;
     }
 
 }
@@ -238,6 +238,11 @@ document.addEventListener(`DOMContentLoaded`,()=>{
 //FILTROS AUN EN ESTADO DE PRUEBA
 const mayorA = document.getElementById(`mayorA`)
 const menorA = document.getElementById(`menorA`)
+const alimento = document.getElementById(`alimentos`)      
+const bebida = document.getElementById(`bebidas`) 
+const golosina = document.getElementById(`golosinas`) 
+const libreria = document.getElementById(`libreria`) 
+
 
 mayorA.addEventListener(`click`,()=>{
     stockProductos.sort((a, b)=>{return a.precio - b.precio});
@@ -253,8 +258,80 @@ menorA.addEventListener(`click`,()=>{
        
     })
 
+    alimento.addEventListener(`click`,()=>{
+        
+        const filter = stockProductos.filter((prod) => {return prod.categoria === "alimento"});
+        ocultarCatalogo()
+        filter.forEach((producto) => {
+            const div = document.createElement(`div`)
+            div.classList.add(`producto`)
+            div.innerHTML = `
+            <article class="card">
+            <img src=${producto.img} alt="">
+            <h3>${producto.nombre}</h3>
+            <p>${producto.desc}</p>
+            <p class="precioProducto">Precio:$ ${producto.precio}</p> 
+            <button id="agregar${producto.id}" class="buttonAgregar">Agregar <i class="<i class="bi bi-cart-fill"></i></button>
+            </article>
+             `
+             contenedorProductos.appendChild(div)
+        
+             const boton = document.getElementById(`agregar${producto.id}`)
+             boton.addEventListener(`click`, () => agregarAlCarrito(producto.id) )
+        })
+        
+        
+    })
 
+    bebida.addEventListener(`click`,()=>{
+        const filter = stockProductos.filter((el) => {return el.categoria === "bebida"});
+        ocultarCatalogo()
+        filter.forEach((producto) => {
+            const div = document.createElement(`div`)
+            div.classList.add(`producto`)
+            div.innerHTML = `
+            <article class="card">
+            <img src=${producto.img} alt="">
+            <h3>${producto.nombre}</h3>
+            <p>${producto.desc}</p>
+            <p class="precioProducto">Precio:$ ${producto.precio}</p> 
+            <button id="agregar${producto.id}" class="buttonAgregar">Agregar <i class="<i class="bi bi-cart-fill"></i></button>
+            </article>
+             `
+             contenedorProductos.appendChild(div)
+        
+             const boton = document.getElementById(`agregar${producto.id}`)
+             boton.addEventListener(`click`, () => agregarAlCarrito(producto.id) )
+        })
+    })
 
+    golosina.addEventListener(`click`,()=>{
+        const filter = stockProductos.filter((el) => {return el.categoria === "golosina"});
+        ocultarCatalogo()
+        filter.forEach((producto) => {
+            const div = document.createElement(`div`)
+            div.classList.add(`producto`)
+            div.innerHTML = `
+            <article class="card">
+            <img src=${producto.img} alt="">
+            <h3>${producto.nombre}</h3>
+            <p>${producto.desc}</p>
+            <p class="precioProducto">Precio:$ ${producto.precio}</p> 
+            <button id="agregar${producto.id}" class="buttonAgregar">Agregar <i class="<i class="bi bi-cart-fill"></i></button>
+            </article>
+             `
+             contenedorProductos.appendChild(div)
+        
+             const boton = document.getElementById(`agregar${producto.id}`)
+             boton.addEventListener(`click`, () => agregarAlCarrito(producto.id) )
+        })
+    })
+   
+    // libreria.addEventListener(`click`,()=>{
+    //     stockProductos.sort((a, b)=>{return b.precio - a.precio});
+    //     ocultarCatalogo()
+    //     mostrarCatalogo()
+    // })
 
     
    
@@ -283,6 +360,6 @@ menorA.addEventListener(`click`,()=>{
         actualizarCarrito()
     })
 
-    agregarUno.addEventListener (`click`, ()=>{
-        sumarAlCarrito()
-    })
+    // agregarUno.addEventListener(`click`, ()=>{
+    //     agregarAlCarrito()
+    // })

@@ -82,9 +82,10 @@ const cargarStock = async () =>{
 const contenedorProductos = document.getElementById(`contenedorProductos`)
 contenedorProductos.setAttribute("class", "productosEstilos")
 
-function mostrarCatalogo(){
+
+function mostrarCatalogo(params){
     
-    stockProductos.forEach((producto) => {
+    params.forEach((producto) => {
         const div = document.createElement(`div`)
         div.classList.add(`producto`)
         div.innerHTML = `
@@ -102,6 +103,7 @@ function mostrarCatalogo(){
          boton.addEventListener(`click`, () => agregarAlCarrito(producto.id) )
     })}
     
+    
 //     function ocultarCatalogo(){
        
 //         contenedorProductos.innerHTML = ""
@@ -116,7 +118,7 @@ function mostrarCatalogo(){
     
     mCatalogo.addEventListener(`click`,()=>{ 
         ocultarCatalogo()
-    mostrarCatalogo()})
+    mostrarCatalogo(stockProductos)})
 
 
 
@@ -247,14 +249,14 @@ const libreria = document.getElementById(`libreria`)
 mayorA.addEventListener(`click`,()=>{
     stockProductos.sort((a, b)=>{return a.precio - b.precio});
     ocultarCatalogo()
-    mostrarCatalogo()
+    mostrarCatalogo(stockProductos)
        
     })
 
 menorA.addEventListener(`click`,()=>{
     stockProductos.sort((a, b)=>{return b.precio - a.precio});
     ocultarCatalogo()
-    mostrarCatalogo()
+    mostrarCatalogo(stockProductos)
        
     })
 
@@ -262,70 +264,25 @@ menorA.addEventListener(`click`,()=>{
         
         const filter = stockProductos.filter((prod) => {return prod.categoria === "alimento"});
         ocultarCatalogo()
-        filter.forEach((producto) => {
-            const div = document.createElement(`div`)
-            div.classList.add(`producto`)
-            div.innerHTML = `
-            <article class="card">
-            <img src=${producto.img} alt="">
-            <h3>${producto.nombre}</h3>
-            <p>${producto.desc}</p>
-            <p class="precioProducto">Precio:$ ${producto.precio}</p> 
-            <button id="agregar${producto.id}" class="buttonAgregar">Agregar <i class="<i class="bi bi-cart-fill"></i></button>
-            </article>
-             `
-             contenedorProductos.appendChild(div)
-        
-             const boton = document.getElementById(`agregar${producto.id}`)
-             boton.addEventListener(`click`, () => agregarAlCarrito(producto.id) )
+        mostrarCatalogo(filter)
         })
         
         
-    })
+    
 
     bebida.addEventListener(`click`,()=>{
         const filter = stockProductos.filter((el) => {return el.categoria === "bebida"});
         ocultarCatalogo()
-        filter.forEach((producto) => {
-            const div = document.createElement(`div`)
-            div.classList.add(`producto`)
-            div.innerHTML = `
-            <article class="card">
-            <img src=${producto.img} alt="">
-            <h3>${producto.nombre}</h3>
-            <p>${producto.desc}</p>
-            <p class="precioProducto">Precio:$ ${producto.precio}</p> 
-            <button id="agregar${producto.id}" class="buttonAgregar">Agregar <i class="<i class="bi bi-cart-fill"></i></button>
-            </article>
-             `
-             contenedorProductos.appendChild(div)
-        
-             const boton = document.getElementById(`agregar${producto.id}`)
-             boton.addEventListener(`click`, () => agregarAlCarrito(producto.id) )
+        mostrarCatalogo(filter)
         })
-    })
+    
 
     golosina.addEventListener(`click`,()=>{
         const filter = stockProductos.filter((el) => {return el.categoria === "golosina"});
         ocultarCatalogo()
-        filter.forEach((producto) => {
-            const div = document.createElement(`div`)
-            div.classList.add(`producto`)
-            div.innerHTML = `
-            <article class="card">
-            <img src=${producto.img} alt="">
-            <h3>${producto.nombre}</h3>
-            <p>${producto.desc}</p>
-            <p class="precioProducto">Precio:$ ${producto.precio}</p> 
-            <button id="agregar${producto.id}" class="buttonAgregar">Agregar <i class="<i class="bi bi-cart-fill"></i></button>
-            </article>
-             `
-             contenedorProductos.appendChild(div)
-        
-             const boton = document.getElementById(`agregar${producto.id}`)
-             boton.addEventListener(`click`, () => agregarAlCarrito(producto.id) )
+        mostrarCatalogo(filter)
         })
-    })
+    
    
     // libreria.addEventListener(`click`,()=>{
     //     stockProductos.sort((a, b)=>{return b.precio - a.precio});

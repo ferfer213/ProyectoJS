@@ -104,21 +104,23 @@ function mostrarCatalogo(params){
     })}
     
     
-//     function ocultarCatalogo(){
-       
-//         contenedorProductos.innerHTML = ""
-       
-//     
-
-    
-    
-// console.log(stockProductos)
 
     const mCatalogo = document.getElementById(`mostrarCatalogo`)
     
+    function myFunction() {
+        if (mCatalogo.style.display === "none") {
+          mCatalogo.style.display = "block";
+        } else {
+          mCatalogo.style.display = "none";
+        }
+      }
+
     mCatalogo.addEventListener(`click`,()=>{ 
         ocultarCatalogo()
-    mostrarCatalogo(stockProductos)})
+        mostrarCatalogo(stockProductos)
+        myFunction()
+    }
+    )
 
 
 
@@ -148,10 +150,7 @@ document.addEventListener(`DOMContentLoaded`,()=>{
     }
 })
 
-// document.addEventListener(`DOMContentLoaded`,()=>{
-//     localStorage.getItem(`carrito`) ?  carrito = JSON.parse(localStorage.getItem(`carrito`)) && actualizarCarrito() : localStorage.removeItem(`carrito`) && actualizarCarrito()
-    
-// }) ESTA FUNCION ES LA QUE APARECE ARRIBA PERO CUANDO LA COLOCO ME APARECE ERROR EN LA LINEA 103, CON EL SOME
+
 
 
 

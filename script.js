@@ -16,19 +16,6 @@ class Producto {
 
 
 
-
-
-// let producto1 = (new Producto(1,"arroz", 300,"descripcion del producto",1,"img/alimentos.jpg","alimento"));
-// stockProductos.push(producto1)
-// let producto2 = (new Producto(2,"fideo", 350,"descripcion del producto",1,"img/alimentos.jpg","alimento"));
-// stockProductos.push(producto2)
-// let producto3 = (new Producto(3,"pan", 450,"descripcion del producto",1,"img/alimentos.jpg","alimento"));
-// stockProductos.push(producto3)
-// let producto4 = (new Producto(4,"guaymallen", 50,"descripcion del producto",1,"img/golosinas.jpg","golosina"));
-// stockProductos.push(producto4)
-// let producto5 = (new Producto(5,"coca cola", 170,"descripcion del producto",1,"img/bebidas.jpg","bebida"));
-// stockProductos.push(producto5)
-
 let stockProductos = [];
 
 const cargarStock = async () =>{
@@ -38,21 +25,6 @@ const cargarStock = async () =>{
     for(let producto of data){
             let productoNuevo = new Producto(producto.id, producto.nombre, producto.precio, producto.cantidad, producto.desc, producto.img, producto.categoria)
             stockProductos.push(productoNuevo)
-        //     const div = document.createElement(`div`)
-        // div.classList.add(`producto`)
-        // div.innerHTML = `
-        // <article class="card">
-        // <img src=${producto.img} alt="">
-        // <h3>${producto.nombre}</h3>
-        // <p>${producto.desc}</p>
-        // <p class="precioProducto">Precio:$ ${producto.precio}</p> 
-        // <button id="agregar${producto.id}" class="buttonAgregar">Agregar <i class="<i class="bi bi-cart-fill"></i></button>
-        // </article>
-        //  `
-        //  contenedorProductos.appendChild(div)
-    
-        //  const boton = document.getElementById(`agregar${producto.id}`)
-        //  boton.addEventListener(`click`, () => agregarAlCarrito(producto.id) )
          
     }}
     
@@ -64,17 +36,6 @@ const cargarStock = async () =>{
 
         cargarStock()
        
-        
-
-           
-
-
-
-
-
-
-
-
 
 
 //PRODUCTOS
@@ -160,7 +121,7 @@ document.addEventListener(`DOMContentLoaded`,()=>{
     const existe = carrito.some (prod => prod.id === prodId)
 
     if (existe){
-        const prod = carrito.map(prod => {
+        carrito.map(prod => {
             prod.id === prodId &&
                 prod.cantidad++
             }
@@ -283,32 +244,32 @@ menorA.addEventListener(`click`,()=>{
         })
     
    
-    // libreria.addEventListener(`click`,()=>{
-    //     stockProductos.sort((a, b)=>{return b.precio - a.precio});
-    //     ocultarCatalogo()
-    //     mostrarCatalogo()
-    // })
+    libreria.addEventListener(`click`,()=>{
+        const filter = stockProductos.filter((el) => {return el.categoria === "libreria"});
+        ocultarCatalogo()
+        mostrarCatalogo(filter)
+    })
 
     
    
 //Botones Carrito (el sumar y restar aun no encuentro la forma de hacerlo)
-    const agregarUno = document.getElementById(`botonAgregar`)
+    // const agregarUno = document.getElementById(`botonAgregar`)
 
-    const sumarAlCarrito = (prodId) => {
-        const item = carrito.find((prod) => prod.id===prodId)
-        carrito.indexOf(item)
-        prodId.cantidad++
-       actualizarCarrito()
-    }
+    // const sumarAlCarrito = (prodId) => {
+    //     const item = carrito.find((prod) => prod.id===prodId)
+    //     carrito.indexOf(item)
+    //     prodId.cantidad++
+    //    actualizarCarrito()
+    // }
     
     
-     const eliminarDelCarrito = (prodId) => {
-        const item = carrito.find((prod) => prod.id === prodId)
-        const indice = carrito.indexOf(item)
-        carrito.splice(indice,1)
-        localStorage.setItem(`carrito`,JSON.stringify(carrito))
-        actualizarCarrito()
-     }
+    //  const eliminarDelCarrito = (prodId) => {
+    //     const item = carrito.find((prod) => prod.id === prodId)
+    //     const indice = carrito.indexOf(item)
+    //     carrito.splice(indice,1)
+    //     localStorage.setItem(`carrito`,JSON.stringify(carrito))
+    //     actualizarCarrito()
+    //  }
     
      vaciarCarrito.addEventListener(`click`, () => {
         carrito.length = 0
@@ -316,6 +277,4 @@ menorA.addEventListener(`click`,()=>{
         actualizarCarrito()
     })
 
-    // agregarUno.addEventListener(`click`, ()=>{
-    //     agregarAlCarrito()
-    // })
+    

@@ -7,7 +7,7 @@
         "precio"    : 300 ,
         "cantidad"  : 1,
         "desc"      : "descripcion del producto",
-        "img"       : "./img/alimentos.jpg",
+        "img"       : "img/alimentos.jpg",
         "categoria" : "alimento"
     },
     {
@@ -16,8 +16,8 @@
         "precio"    : 350 ,
         "cantidad"  : 1,
         "desc"      : "descripcion del producto",
-        "img"       : "./img/alimentos.jpg",
-        "categoria" : "bebida"
+        "img"       : "img/alimentos.jpg",
+        "categoria" : "alimento"
     },
     {
         "id"       : 3 ,
@@ -25,7 +25,7 @@
         "precio"    : 450 ,
         "cantidad"  : 1,
         "desc"      : "descripcion del producto",
-        "img"       : "./img/alimentos.jpg",
+        "img"       : "img/alimentos.jpg",
         "categoria" : "bebida"
     },
     {
@@ -34,7 +34,7 @@
         "precio"    : 50 ,
         "cantidad"  : 1,
         "desc"      : "descripcion del producto",
-        "img"       : "./img/golosinas.jpg",
+        "img"       : "img/golosinas.jpg",
         "categoria" : "bebida"
     },
     {
@@ -43,7 +43,7 @@
         "precio"    : 170 ,
         "cantidad"  : 1,
         "desc"      : "descripcion del producto",
-        "img"       : "./img/bebidas.jpg",
+        "img"       : "img/bebidas.jpg",
         "categoria" : "bebida"
     },
     {
@@ -52,7 +52,7 @@
         "precio"    : 180 ,
         "cantidad"  : 1,
         "desc"      : "descripcion del producto",
-        "img"       : "./img/bebidas.jpg",
+        "img"       : "img/bebidas.jpg",
         "categoria" : "bebida"
     },
     {
@@ -61,7 +61,7 @@
         "precio"    : 120 ,
         "cantidad"  : 1,
         "desc"      : "descripcion del producto",
-        "img"       : "./img/golosinas.jpg",
+        "img"       : "img/golosinas.jpg",
         "categoria" : "golosina"
     },
     {
@@ -70,7 +70,7 @@
         "precio"    : 140 ,
         "cantidad"  : 1,
         "desc"      : "descripcion del producto",
-        "img"       : "./img/golosinas.jpg",
+        "img"       : "img/golosinas.jpg",
         "categoria" : "golosina"
     }
 ]

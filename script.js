@@ -14,7 +14,7 @@ class Producto {
 
 }
 
-
+let carrito =[];
 
 let stockProductos = [];
 
@@ -88,7 +88,7 @@ function mostrarCatalogo(params){
     
 //const del CARRITO 
 
-let carrito =[];
+
 
 const fcompra = document.getElementById(`botonFinalizarCompra`)
 
@@ -253,7 +253,7 @@ menorA.addEventListener(`click`,()=>{
     
    
 //Botones Carrito (el sumar y restar aun no encuentro la forma de hacerlo)
-    // const agregarUno = document.getElementById(`botonAgregar`)
+     const agregarUno = document.getElementById(`botonAgregar`)
 
     // const sumarAlCarrito = (prodId) => {
     //     const item = carrito.find((prod) => prod.id===prodId)
@@ -275,6 +275,10 @@ menorA.addEventListener(`click`,()=>{
         carrito.length = 0
         localStorage.setItem(`carrito`,JSON.stringify(carrito))
         actualizarCarrito()
+    })
+
+    agregarUno.addEventListener(`click`,(productoCarrito) => {
+        productoCarrito.cantidad++
     })
 
     
